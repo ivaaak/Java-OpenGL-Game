@@ -27,10 +27,10 @@ public class Render
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_STENCIL_BUFFER_BIT);
         Color.white.bind();
 
-        InitializeBackground.drawBackground();
+        Background.drawBackground();
 
         if(CurrentLives == 0) {
-            InitializeEndScreen.drawEndscreen();
+            EndScreen.drawEndscreen();
             return;
         }
 
@@ -41,6 +41,6 @@ public class Render
         }
 
         Render.drawObjects();
-        InitializeHUD.drawHUD();
+        HUD.drawHUD();
     }
 }
