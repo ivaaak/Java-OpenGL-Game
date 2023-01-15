@@ -1,7 +1,7 @@
 package Entities;
 import Sprites.MySprite;
 
-public abstract class ObjectEntity extends Entity
+public class ObjectEntity extends Entity
 {
 	public ObjectEntity(MySprite sprite, int x, int y) { super(sprite, x, y); }
 

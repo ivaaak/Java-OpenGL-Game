@@ -4,6 +4,8 @@ import Entities.Entity;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
+import java.io.IOException;
+
 import static Startup.JumpAndRun.*;
 
 public class Render
@@ -23,11 +25,11 @@ public class Render
 
 
 // Render the current frame
-    public static void render() {
+    public static void render() throws IOException {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_STENCIL_BUFFER_BIT);
         Color.white.bind();
 
-        Background.drawBackground();
+        BackgroundTile.draw(0,0);
 
         if(CurrentLives == 0) {
             EndScreen.drawEndscreen();
@@ -41,6 +43,7 @@ public class Render
         }
 
         Render.drawObjects();
-        HUD.drawHUD();
+        HUD.drawScore();
+        HUD.drawLives();
     }
 }

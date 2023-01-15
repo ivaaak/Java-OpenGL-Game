@@ -1,35 +1,36 @@
 package Infrastructure;
 
-import Sprites.LevelTile;
+import Entities.ObjectEntity;
+import Sprites.MySprite;
 import Startup.JumpAndRun;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
+
+import java.io.IOException;
+
 import static Startup.JumpAndRun.CurrentLives;
-import static Startup.JumpAndRun.Lives;
 
 public class HUD
 {
 // Renders the score and lifes in the heads up display
-    public static void drawHUD()
+    public static void drawScore()
     {
         JumpAndRun.ScoreFont.drawString(10, 0, String.format("Score: %d", JumpAndRun.Score), Color.white);
-        Color.white.bind();
-        JumpAndRun.Lives[JumpAndRun.CurrentLives]
-            .draw(Constants.GameConstants.SCREEN_SIZE_WIDTH - JumpAndRun.Lives[JumpAndRun.CurrentLives].getWidth(), 0);
     }
 
 // Visualize of the lives of the player
-    public static void initLives() throws Exception
-    {
-        //Loads the heart sprite in the array lives[] of type LevelTile
-        for (int i = 0; i <= CurrentLives; i++)
+    public static void drawLives() throws IOException {
+        Texture texture;
+        for (int i = 1; i <= CurrentLives; i++)
         {
-            Texture texture = TextureLoader
-                    .getTexture("PNG", ResourceLoader
-                            .getResourceAsStream("res/heart" + i + ".png"));
-            Lives[i] = new LevelTile(texture);
+            texture = TextureLoader
+                .getTexture("PNG", ResourceLoader
+                    .getResourceAsStream("res/heart.png"));
+
+            ObjectEntity heartIcon = new ObjectEntity(new MySprite(texture), 1550 - i*50, 50);
+            heartIcon.draw();
         }
     }
 }

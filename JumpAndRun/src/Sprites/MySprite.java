@@ -38,10 +38,4 @@ public class MySprite
 // getters
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
-	// public Texture getTexture() { return texture; }
-
-// setters
-	// public void setWidth(int width) { this.width = width; }
-	// public void setHeight(int height) { this.height = height; }
-	// public void setTexture(Texture texture) { this.texture = texture; }
 }

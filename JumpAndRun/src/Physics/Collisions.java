@@ -57,7 +57,7 @@ public class Collisions
             int newX = rand.nextInt( Constants.GameConstants.SCREEN_SIZE_WIDTH - bombEntity.getWidth());
             int newY =  rand.nextInt( 1, 500 );
             bombEntity.setX(newX);
-            bombEntity.setY(newY);
+            bombEntity.setY(-newY);
             CurrentLives--;
         }
     }

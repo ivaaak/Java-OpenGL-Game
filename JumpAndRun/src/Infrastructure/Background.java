@@ -1,7 +1,6 @@
 package Infrastructure;
 
 import Sprites.LevelTile;
-import Startup.JumpAndRun;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -21,10 +20,5 @@ public class Background
                         .getResourceAsStream("res/background_tile.png"));
 
         BackgroundTile = new LevelTile(texture);
-    }
-// Renders the game objects: presents and bombs
-    public static void drawBackground()
-    {
-        JumpAndRun.BackgroundTile.draw(0,0);
     }
 }

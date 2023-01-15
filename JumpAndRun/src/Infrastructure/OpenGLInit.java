@@ -4,12 +4,6 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.TrueTypeFont;
-
-import java.awt.*;
-
-import static Startup.JumpAndRun.EndScreenFont;
-import static Startup.JumpAndRun.ScoreFont;
 
 public class OpenGLInit
 {
@@ -38,11 +32,5 @@ public class OpenGLInit
         GL11.glLoadIdentity();
         GL11.glOrtho(0, width, height, 0, 1, -1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
-
-        Font scoreFontDetails = new Font("Times New Roman" , Font.BOLD, 32);
-        ScoreFont = new TrueTypeFont(scoreFontDetails, true);
-
-        Font endScreenFontDetails = new Font("Times New Roman" , Font.BOLD, 64);
-        EndScreenFont = new TrueTypeFont(endScreenFontDetails, true);
     }
 }

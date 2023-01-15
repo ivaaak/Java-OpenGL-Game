@@ -2,19 +2,20 @@ package Infrastructure;
 
 import Sprites.LevelTile;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static Startup.JumpAndRun.*;
 
 public class EndScreen
 {
-// Renders the end screen which is shown if the player doesn't have any lifes left
+// Renders the end screen (no lives left)
     public static void drawEndscreen() {
-        Color.white.bind();
         EndScreenTiles[0].draw(
             (Constants.GameConstants.SCREEN_SIZE_WIDTH - EndScreenTiles[0].getWidth())/2,
             (Constants.GameConstants.SCREEN_SIZE_HEIGHT - EndScreenTiles[0].getHeight())/2);
@@ -22,50 +23,44 @@ public class EndScreen
         Calculations.highScoreCalculate();
 
         EndScreenFont.drawString(
-            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 2) - 50,
-            (Constants.GameConstants.SCREEN_SIZE_HEIGHT / 3) + 10,
-            String.format("Final Score"), Color.white);
+            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 2)-150,
+            (Constants.GameConstants.SCREEN_SIZE_HEIGHT / 3) + 260,
+            String.format("Final Score: %d", Score), Color.white);
 
         EndScreenFont.drawString(
-            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 2) - 10,
-            (Constants.GameConstants.SCREEN_SIZE_HEIGHT/3) + 40,
-            String.format("%d" , Score), Color.white);
+            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 2)-150,
+            (Constants.GameConstants.SCREEN_SIZE_HEIGHT/3) + 330,
+            String.format("High Score: %d", HighScore), Color.white);
 
         EndScreenFont.drawString(
-            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 2) + -50,
-            (Constants.GameConstants.SCREEN_SIZE_HEIGHT/3) + 80,
-            String.format("High Score"), Color.white);
+            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 3)+50,
+            (Constants.GameConstants.SCREEN_SIZE_HEIGHT/3) + 400,
+            String.format("Press N for a new game"), Color.white);
 
-        EndScreenFont.drawString(
-            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 2) - 10,
-            (Constants.GameConstants.SCREEN_SIZE_HEIGHT/3) + 110,
-            String.format("%d" , HighScore), Color.white);
-
-        EndScreenFont.drawString(
-            (Constants.GameConstants.SCREEN_SIZE_WIDTH / 3) + 30,
-            (Constants.GameConstants.SCREEN_SIZE_HEIGHT/3) + 150,
-            String.format("Press N for new game"), Color.white);
-
-        //draw medal if there is a new high score
+        //draw highscore pic if there is a new high score
         if(Score >= HighScore) {
-            Color.white.bind();
-            EndScreenTiles[1].draw(70,70);
+            EndScreenTiles[1].draw(450,100);
         }
     }
 
-// Show the end screen
     public static void initEndScreen() throws IOException
     {
-        //Load the frame, which shows the score in the middle of the screen
+        Font scoreFontDetails = new Font("Times New Roman" , Font.BOLD, 32);
+        ScoreFont = new TrueTypeFont(scoreFontDetails, true);
+
+        Font endScreenFontDetails = new Font("Times New Roman" , Font.BOLD, 48);
+        EndScreenFont = new TrueTypeFont(endScreenFontDetails, true);
+
+        //Load the score frame
         Texture scoreFrame = TextureLoader
             .getTexture("PNG", ResourceLoader
                 .getResourceAsStream("res/score_frame.png"));
         EndScreenTiles[0] = new LevelTile(scoreFrame);
 
-        //initialize the medal (for the new high score)
-        Texture medal = TextureLoader
+        //initialize the high score pic
+        Texture highscorePicture = TextureLoader
             .getTexture("PNG",ResourceLoader
                 .getResourceAsStream("res/medal.png"));
-        EndScreenTiles[1] = new LevelTile(medal);
+        EndScreenTiles[1] = new LevelTile(highscorePicture);
     }
 }
